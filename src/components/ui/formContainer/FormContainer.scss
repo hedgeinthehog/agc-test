@@ -1,0 +1,8 @@
+@use '@/scss/variables' as v;
+
+.form-container {
+  padding: 1.25rem 1rem;
+  background-color: v.$common-background;
+  border-radius: v.$common-border-radius;
+  box-shadow: v.$primary-box-shadow;
+}

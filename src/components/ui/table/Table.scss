@@ -1,0 +1,28 @@
+@use '@/scss/variables' as v;
+@use '@/scss/mixins' as m;
+
+.table {
+  width: 100%;
+  background-color: v.$common-background;
+  border-style: hidden;
+  border-radius: v.$common-border-radius;
+
+  &__head {
+    background-color: v.$secondary-color;
+  }
+
+  &__head-cell {
+    padding: 0.563rem 0.75rem 0.438rem; /* 9px 12px 7px */
+    @include m.text(v.$common-font-size, v.$common-line-height);
+    color: v.$inverted-text-color;
+    text-align: start;
+    opacity: 50%;
+  }
+
+  &__body-cell {
+    padding: 0.563rem 0.75rem; /* 9px 12px */
+    @include m.text(v.$common-font-size, v.$common-line-height);
+    color: v.$secondary-text-color;
+    border: 1px solid v.$additional-color-2;
+  }
+}

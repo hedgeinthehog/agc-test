@@ -1,0 +1,25 @@
+@mixin text($font-size, $line-height, $font-weight: 400) {
+  font-size: $font-size;
+  line-height: $line-height;
+  font-weight: $font-weight;
+}
+
+$tablet: 768;
+
+@mixin tablet {
+  @media only screen and (min-width: $tablet * 1px) {
+    @content;
+  }
+}
+
+@mixin hover {
+  &:not([disabled]):hover {
+    @content;
+  }
+}
+
+@mixin focus {
+  &:not([disabled]):focus {
+    @content;
+  }
+}

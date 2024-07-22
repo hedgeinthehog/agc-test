@@ -1,0 +1,57 @@
+@use '@/scss/variables' as v;
+@use '@/scss/mixins' as m;
+
+%button-large {
+  padding: 0.875rem; /* 14px */
+  @include m.text(v.$common-font-size, v.$common-line-height, 700);
+  text-transform: uppercase;
+  border-radius: v.$common-border-radius;
+}
+
+%button-small {
+  padding: 0.313rem; /* 5px */
+  @include m.text(v.$common-font-size, v.$common-line-height);
+  text-transform: capitalize;
+  border-radius: v.$small-border-radius;
+}
+
+%button-primary-colors {
+  background-color: v.$primary-color;
+  color: v.$inverted-text-color;
+
+  &[disabled] {
+    background-color: v.$tertiary-color;
+  }
+}
+
+%button-as-link {
+  @include m.text(v.$common-font-size, v.$common-line-height);
+  text-transform: capitalize;
+  text-decoration: underline;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &--large-primary {
+    @extend %button-large;
+    @extend %button-primary-colors;
+  }
+
+  &--small-primary {
+    @extend %button-small;
+    @extend %button-primary-colors;
+  }
+
+  &--link-primary {
+    @extend %button-as-link;
+    color: v.$primary-color;
+  }
+
+  &--link-warning {
+    @extend %button-as-link;
+    color: v.$primary-warning-color;
+  }
+}

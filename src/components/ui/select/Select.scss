@@ -1,0 +1,68 @@
+@use '@/scss/variables' as v;
+@use '@/scss/mixins' as m;
+
+.select__single-value {
+  @include m.text(v.$common-font-size, v.$common-line-height);
+  color: v.$primary-text-color;
+}
+
+.select__menu {
+  margin-top: 0.25rem;
+  background-color: v.$common-background;
+  border: 1px solid v.$additional-color-1;
+  border-radius: v.$common-border-radius;
+
+  .select__menu-list {
+    padding: 0 0.75rem; /* 0 12px */
+    @include m.text(v.$common-font-size, 1rem);
+  }
+}
+
+.select__option {
+  padding: 0.813rem 0; /* 13px 0 */
+  color: v.$secondary-text-color;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid v.$additional-color-1;
+  }
+
+  &--is-focused,
+  &--is-selected {
+    color: v.$tertiary-text-color;
+    font-weight: 700;
+  }
+}
+
+.select__control {
+  padding: 0.813rem; /* 13px */
+  background-color: v.$common-background;
+  border: 1px solid v.$additional-color-1;
+  border-radius: v.$common-border-radius;
+
+  .select__indicator {
+    width: 0.875rem;
+    height: 0.875rem;
+
+    & svg {
+      width: 100%;
+      height: 100%;
+      fill: v.$additional-color-3;
+    }
+  }
+
+  .select__placeholder {
+    @include m.text(v.$common-font-size, v.$common-line-height);
+    color: v.$secondary-text-color;
+  }
+
+  .select__input-container {
+    @include m.text(v.$common-font-size, v.$common-line-height);
+    color: v.$secondary-text-color;
+  }
+
+  &--menu-is-open {
+    .select__indicator {
+      transform: scale(-1);
+    }
+  }
+}

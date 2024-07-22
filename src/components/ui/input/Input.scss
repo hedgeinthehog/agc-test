@@ -1,0 +1,15 @@
+@use '@/scss/variables' as v;
+@use '@/scss/mixins' as m;
+
+.input {
+  padding: 0.813rem;
+  @include m.text(v.$common-font-size, v.$common-line-height);
+  color: v.$primary-text-color;
+  background-color: v.$common-background;
+  border: 1px solid v.$additional-color-1;
+  border-radius: v.$common-border-radius;
+
+  &::placeholder {
+    color: v.$secondary-text-color;
+  }
+}
