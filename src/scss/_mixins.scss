@@ -5,6 +5,13 @@
 }
 
 $tablet: 768;
+$desktop: 1024;
+
+@mixin mobile-only {
+  @media only screen and (max-width: ($tablet - 1) * 1px) {
+    @content;
+  }
+}
 
 @mixin tablet {
   @media only screen and (min-width: $tablet * 1px) {
@@ -12,14 +19,28 @@ $tablet: 768;
   }
 }
 
-@mixin hover {
-  &:not([disabled]):hover {
+@mixin desktop {
+  @media only screen and (min-width: $desktop * 1px) {
     @content;
+  }
+}
+
+@mixin hover {
+  @media (hover: hover) and (pointer: fine) {
+    &:not([disabled]):hover {
+      @content;
+    }
   }
 }
 
 @mixin focus {
   &:not([disabled]):focus {
+    @content;
+  }
+}
+
+@mixin active {
+  &:not([disabled]):active {
     @content;
   }
 }

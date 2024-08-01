@@ -1,5 +1,11 @@
+@use '@/scss/mixins' as m;
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 3rem;
+  padding: 1.4rem;
+
+  @include m.desktop() {
+    padding: 3rem;
+  }
 }

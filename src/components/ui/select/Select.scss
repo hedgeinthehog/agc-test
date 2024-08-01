@@ -1,20 +1,61 @@
 @use '@/scss/variables' as v;
 @use '@/scss/mixins' as m;
 
-.select__single-value {
-  @include m.text(v.$common-font-size, v.$common-line-height);
-  color: v.$primary-text-color;
-}
+.select {
+  position: relative;
 
-.select__menu {
-  margin-top: 0.25rem;
-  background-color: v.$common-background;
-  border: 1px solid v.$additional-color-1;
-  border-radius: v.$common-border-radius;
+  &__selected-value {
+    @include m.text(v.$common-font-size, v.$common-line-height);
+    color: v.$primary-text-color;
+  }
 
-  .select__menu-list {
+  &__placeholder {
+    color: v.$secondary-text-color;
+  }
+
+  &__menu {
+    position: absolute;
+    left: 0;
+    right: 0;
+    max-height: 240px;
+    margin-top: 0.25rem;
     padding: 0 0.75rem; /* 0 12px */
     @include m.text(v.$common-font-size, 1rem);
+    background-color: v.$common-background;
+    border: 1px solid v.$additional-color-1;
+    border-radius: v.$common-border-radius;
+    box-shadow: v.$secondary-box-shadow;
+    overflow: auto;
+    z-index: 1;
+  }
+}
+
+.select__control {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.813rem; /* 13px */
+  border: 1px solid v.$additional-color-1;
+  border-radius: v.$common-border-radius;
+  background-color: v.$common-background;
+  transition: all;
+  cursor: default;
+
+  &--disabled {
+    opacity: 80%;
+    cursor: not-allowed;
+  }
+
+  .select__indicator {
+    width: 0.875rem;
+    height: 0.875rem;
+    color: v.$additional-color-3;
+  }
+
+  &--menu-is-open {
+    .select__indicator {
+      transform: scale(-1);
+    }
   }
 }
 
@@ -26,43 +67,19 @@
     border-bottom: 1px solid v.$additional-color-1;
   }
 
-  &--is-focused,
   &--is-selected {
     color: v.$tertiary-text-color;
     font-weight: 700;
   }
-}
 
-.select__control {
-  padding: 0.813rem; /* 13px */
-  background-color: v.$common-background;
-  border: 1px solid v.$additional-color-1;
-  border-radius: v.$common-border-radius;
-
-  .select__indicator {
-    width: 0.875rem;
-    height: 0.875rem;
-
-    & svg {
-      width: 100%;
-      height: 100%;
-      fill: v.$additional-color-3;
-    }
+  @include m.hover() {
+    color: v.$tertiary-text-color;
+    font-weight: 700;
   }
 
-  .select__placeholder {
-    @include m.text(v.$common-font-size, v.$common-line-height);
-    color: v.$secondary-text-color;
-  }
-
-  .select__input-container {
-    @include m.text(v.$common-font-size, v.$common-line-height);
-    color: v.$secondary-text-color;
-  }
-
-  &--menu-is-open {
-    .select__indicator {
-      transform: scale(-1);
-    }
+  @include m.focus() {
+    color: v.$tertiary-text-color;
+    font-weight: 700;
+    outline: none;
   }
 }

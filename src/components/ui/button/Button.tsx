@@ -1,5 +1,7 @@
 import React from 'react'
+
 import clsx from 'clsx'
+
 import './Button.scss'
 
 type ButtonVariants =
@@ -7,6 +9,7 @@ type ButtonVariants =
   | 'small-primary'
   | 'link-primary'
   | 'link-warning'
+  | 'as-icon'
 
 type ButtonProps = React.ComponentProps<'button'> & {
   children: React.ReactNode

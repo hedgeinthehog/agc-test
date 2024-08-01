@@ -1,0 +1,15 @@
+@use '@/scss/variables' as v;
+@use '@/scss/mixins' as m;
+
+.form-field {
+  position: relative;
+  margin-bottom: 1rem;
+
+  &__error {
+    position: absolute;
+    left: 0;
+    bottom: -#{v.$common-line-height};
+    @include m.text(v.$smaller-font-size, v.$common-line-height, 700);
+    color: v.$secondary-warning-color;
+  }
+}

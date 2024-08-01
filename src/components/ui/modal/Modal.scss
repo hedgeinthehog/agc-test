@@ -1,0 +1,18 @@
+@use '@/scss/variables' as v;
+
+.modal {
+  width: 95%;
+  max-width: 400px;
+  padding: 1.5rem;
+  background-color: v.$common-background;
+  border: none;
+  border-radius: v.$common-border-radius;
+  box-shadow: v.$primary-box-shadow;
+  overflow: clip visible;
+
+  &__close-button {
+    display: block;
+    margin-left: auto;
+    color: v.$additional-color-3;
+  }
+}

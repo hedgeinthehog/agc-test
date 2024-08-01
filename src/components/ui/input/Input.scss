@@ -2,6 +2,7 @@
 @use '@/scss/mixins' as m;
 
 .input {
+  width: 100%;
   padding: 0.813rem;
   @include m.text(v.$common-font-size, v.$common-line-height);
   color: v.$primary-text-color;
@@ -11,5 +12,11 @@
 
   &::placeholder {
     color: v.$secondary-text-color;
+  }
+
+  @include m.focus() {
+    &::placeholder {
+      opacity: 0;
+    }
   }
 }

@@ -1,7 +1,10 @@
 @use '@/scss/variables' as v;
 @use '@/scss/mixins' as m;
 
+@use './button-mixins' as bm;
+
 %button-large {
+  width: 100%;
   padding: 0.875rem; /* 14px */
   @include m.text(v.$common-font-size, v.$common-line-height, 700);
   text-transform: uppercase;
@@ -9,49 +12,62 @@
 }
 
 %button-small {
+  min-width: 90px;
   padding: 0.313rem; /* 5px */
   @include m.text(v.$common-font-size, v.$common-line-height);
   text-transform: capitalize;
   border-radius: v.$small-border-radius;
 }
 
-%button-primary-colors {
-  background-color: v.$primary-color;
-  color: v.$inverted-text-color;
-
-  &[disabled] {
-    background-color: v.$tertiary-color;
-  }
+%button-primary-styles {
+  @include bm.common-button-style(
+    v.$common-border-radius,
+    v.$inverted-text-color,
+    v.$primary-color,
+    v.$tertiary-color
+  );
 }
 
 %button-as-link {
   @include m.text(v.$common-font-size, v.$common-line-height);
   text-transform: capitalize;
-  text-decoration: underline;
 }
 
 .button {
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: transform 0.3s;
+
+  &[disabled] {
+    cursor: not-allowed;
+  }
+
+  @include m.active {
+    transform: scale(0.9);
+  }
 
   &--large-primary {
     @extend %button-large;
-    @extend %button-primary-colors;
+    @extend %button-primary-styles;
   }
 
   &--small-primary {
     @extend %button-small;
-    @extend %button-primary-colors;
+    @extend %button-primary-styles;
   }
 
   &--link-primary {
     @extend %button-as-link;
-    color: v.$primary-color;
+    @include bm.underline-button-style(v.$primary-color);
   }
 
   &--link-warning {
     @extend %button-as-link;
-    color: v.$primary-warning-color;
+    @include bm.underline-button-style(v.$primary-warning-color);
+  }
+
+  &--as-icon {
+    @include bm.scale-button-style();
   }
 }

@@ -1,28 +1,102 @@
 @use '@/scss/variables' as v;
 @use '@/scss/mixins' as m;
 
+@mixin head-cell-styles {
+  /* Unify styles for header cell on desktop and mobile */
+  padding: 0.563rem 0.75rem 0.438rem; /* 9px 12px 7px */
+  @include m.text(v.$common-font-size, v.$common-line-height);
+  color: transparentize(v.$inverted-text-color, 0.5);
+  background-color: v.$secondary-color;
+  text-align: start;
+}
+
 .table {
   width: 100%;
-  background-color: v.$common-background;
   border-style: hidden;
-  border-radius: v.$common-border-radius;
-
-  &__head {
-    background-color: v.$secondary-color;
-  }
+  border-radius: v.$small-border-radius;
+  overflow: clip;
 
   &__head-cell {
-    padding: 0.563rem 0.75rem 0.438rem; /* 9px 12px 7px */
-    @include m.text(v.$common-font-size, v.$common-line-height);
-    color: v.$inverted-text-color;
-    text-align: start;
-    opacity: 50%;
+    @include head-cell-styles;
   }
 
   &__body-cell {
     padding: 0.563rem 0.75rem; /* 9px 12px */
     @include m.text(v.$common-font-size, v.$common-line-height);
     color: v.$secondary-text-color;
+    background-color: v.$common-background;
     border: 1px solid v.$additional-color-2;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  &__actions-cell {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 0.625rem;
+  }
+
+  &__empty {
+    padding: 1rem;
+    @include m.text(v.$common-font-size, v.$common-line-height);
+    border: 1px solid v.$secondary-color;
+  }
+
+  &__empty-text {
+    text-align: center;
+  }
+}
+
+.table__body-row:first-child {
+  .table__body-cell {
+    border-top: none;
+  }
+}
+
+// Mobile Only Styles. Display rows vertically
+@include m.mobile-only {
+  .table,
+  .table__head,
+  .table__body,
+  .table__head-cell,
+  .table__body-cell,
+  .table__body-row {
+    display: block;
+  }
+
+  .table__head {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .table__body-row {
+    margin-bottom: 0.2rem;
+    border-radius: v.$small-border-radius;
+    overflow: clip;
+  }
+
+  .table__body-cell {
+    position: relative;
+    padding-left: 40%;
+    text-align: right;
+  }
+
+  .table__body-cell::before {
+    @include head-cell-styles;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 35%;
+    height: 100%;
+    white-space: nowrap;
+    text-align: left; /* Align labels to the left */
+    content: attr(data-label); /* Insert data-label content */
+  }
+
+  .table__actions-cell {
+    justify-content: end;
+    gap: 1.25rem;
   }
 }

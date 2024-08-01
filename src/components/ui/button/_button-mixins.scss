@@ -1,0 +1,86 @@
+@use '@/scss/mixins' as m;
+
+@mixin common-button-style(
+  $border-radius,
+  $text-color,
+  $bg-color,
+  $disabled-bg-color
+) {
+  position: relative;
+  color: $text-color;
+  z-index: 0;
+  transition: all 0.25s;
+
+  &::before,
+  &::after {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    transition: all 0.2s;
+    content: '';
+  }
+
+  &::before {
+    width: 100%;
+    left: 0;
+    border-radius: $border-radius;
+    background-color: $bg-color;
+    z-index: -1;
+  }
+
+  &::after {
+    width: 0;
+    left: 50%;
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+    transform: translate(-50%, 0);
+    z-index: 1;
+  }
+
+  @include m.hover() {
+    color: $bg-color;
+
+    &::before {
+      transform: scale(0, 1);
+    }
+    &::after {
+      width: 100%;
+      border-color: $bg-color;
+      transition-delay: 0.1s;
+    }
+  }
+
+  &[disabled]::before {
+    background-color: $disabled-bg-color;
+  }
+}
+
+@mixin underline-button-style($text-color) {
+  position: relative;
+  color: $text-color;
+
+  &::before {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: $text-color;
+    transform: scaleX(1);
+    transition: transform 0.25s ease;
+  }
+
+  @include m.hover() {
+    &::before {
+      transform: scaleX(0);
+    }
+  }
+}
+
+@mixin scale-button-style() {
+  @include m.hover() {
+    transform: scale(1.2);
+  }
+}
