@@ -117,6 +117,8 @@ const RecordForm = ({ editFormData }: RecordFormProps) => {
             name="age"
             placeholder="Age"
             aria-label="Enter age"
+            inputMode="numeric"
+            pattern="[0-9]*"
             value={formState.values.age}
             onChange={handleChange}
             onBlur={handleBlur}
