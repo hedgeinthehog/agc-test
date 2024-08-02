@@ -5,7 +5,7 @@ import './Table.scss'
 type Column<T> = {
   id: string
   header: string
-  accessor: keyof T | ((row: T, tableId?: string) => React.ReactNode)
+  accessor: (row: T, tableId: string) => React.ReactNode
 }
 
 export type Columns<T> = Column<T>[]
@@ -49,11 +49,7 @@ const Table = <T extends { id: string }>({
                 key={column.id}
                 data-label={column.header}
               >
-                {typeof column.accessor === 'function' ? (
-                  <>{column.accessor(row, tableId)}</>
-                ) : (
-                  row[column.accessor as keyof T]
-                )}
+                {column.accessor(row, tableId)}
               </td>
             ))}
           </tr>

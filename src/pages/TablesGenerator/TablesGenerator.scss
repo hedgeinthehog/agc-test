@@ -1,0 +1,41 @@
+@use '@/scss/variables' as v;
+@use '@/scss/mixins' as m;
+
+.tables-generator {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+
+  &__add-record-forms {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  &__add-record-form {
+    max-width: 280px;
+    width: 100%;
+    min-width: 245px;
+    flex: 1 0;
+  }
+}
+
+.generator-table {
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  &__controls {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.375rem; /* 22px */
+    margin-bottom: 0.75rem; /* 12px */
+  }
+
+  &__delete-icon {
+    color: v.$secondary-warning-color;
+  }
+}

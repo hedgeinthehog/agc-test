@@ -45,7 +45,7 @@ const Modal = () => {
       <button
         className="modal__close-button"
         aria-label="Close Modal"
-        tabIndex="0"
+        tabIndex={0}
         onClick={() => closeModal()}
       >
         <CrossIcon />

@@ -1,11 +1,18 @@
+import { Modal } from '@/components/ui'
+import { ModalProvider } from '@/context/Modal.tsx'
+import { PeopleTablesProvider } from '@/context/PeopleTables.tsx'
+import TablesGenerator from '@/pages/TablesGenerator'
+
 import './App.scss'
-import TablesGenerator from './pages/TablesGenerator/TablesGenerator'
 
 function App() {
   return (
-    <>
-      <TablesGenerator />
-    </>
+    <ModalProvider>
+      <PeopleTablesProvider>
+        <TablesGenerator />
+        <Modal />
+      </PeopleTablesProvider>
+    </ModalProvider>
   )
 }
 
